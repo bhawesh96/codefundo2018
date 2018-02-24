@@ -35,18 +35,18 @@ def webhook():
                     print 'MSG TEXT: ' + message_text
                     # print 'wit call now'
 
-                    # final_message = wit_parser(client.message(str(message_text)))
+                    final_message = wit_parser(client.message(str(message_text)))
                     print 'now sending to client'
                     send_message(sender_id, final_message)
 
                 if messaging_event.get("delivery"):  # delivery confirmation
-                    pass
+                    return '', 200
 
                 if messaging_event.get("optin"):  # optin confirmation
-                    pass
+                    return '', 200
 
                 if messaging_event.get("postback"):  # user clicked/tapped "postback" button in earlier message
-                    pass
+                    return '', 200
 
     return "ok", 200
 
