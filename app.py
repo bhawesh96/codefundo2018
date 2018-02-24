@@ -40,7 +40,7 @@ def webhook():
                     time.sleep(2)
                     send_message(sender_id, final_message)
 
-                if messaging_event.get("delivery"):  # delivery confirmation
+                if messaging_event.get("delivery"):  # delivery confirmatio
                     return '', 200
 
                 if messaging_event.get("optin"):  # optin confirmation
