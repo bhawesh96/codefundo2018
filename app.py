@@ -3,6 +3,7 @@ import json
 import requests
 import trains
 from wit import Wit
+import time
 
 app = Flask(__name__)
 
@@ -36,7 +37,7 @@ def webhook():
                     # print 'wit call now'
 
                     final_message = wit_parser(client.message(str(message_text)))
-                    print 'now sending to client: ' + final_message
+                    time.sleep(2)
                     send_message(sender_id, final_message)
 
                 if messaging_event.get("delivery"):  # delivery confirmation
