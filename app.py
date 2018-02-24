@@ -38,7 +38,7 @@ def webhook():
                     # print 'wit call now'
 
                     final_message = wit_parser(client.message(str(message_text)))
-                    # time.sleep(2)
+                    # time.sleep(2)`
                     send_message(sender_id, final_message)
 
                 if messaging_event.get("delivery"):  # delivery confirmatio
@@ -66,7 +66,7 @@ def wit_parser(resp):
                 if(_travel_mode == 'train'):
                     return trains.train_between(_source, _destination, None)
     except Exception as e:
-        return str(e)
+        return 'app.py error: ' + str(e)
     return "Sorry! I'm not smart enough yet!"
 
 
