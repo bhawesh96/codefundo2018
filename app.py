@@ -8,7 +8,7 @@ app = Flask(__name__)
 
 client = Wit('***REMOVED***')
 
-page_token = 'EAAH4N0DZAmJQBAFlFauTRe0098BpCJQrwjniLDjZCVZBHTZCMxzjuvSZBlwVFehG6C1ai2NBfN9MgSpzoHzHrr75kS51WouqV8zjdV8duAvnUImNZCwlpZB2IIpvKvQ9t68KsxZAil8zF6B7Da8o1ExAFwlFvH8umgvBzZB6ZBnTLIDek8zlQo84rZB'
+page_token = 'Facebook_Page_Token'
 
 @app.route('/', methods=['GET'])
 def verify():
@@ -32,8 +32,8 @@ def webhook():
                     sender_id = messaging_event["sender"]["id"]        # the facebook ID of the person sending you the message
                     recipient_id = messaging_event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
                     message_text = messaging_event["message"]["text"]  # the message's text
-                    print 'MSH TEXT: ' + message_text
-                    print 'wit call now'
+                    # print 'MSH TEXT: ' + message_text
+                    # print 'wit call now'
 
                     # final_message = wit_parser(client.message(str(message_text)))
 
