@@ -39,9 +39,9 @@ def live_train_status(train_number):
 	url="https://api.railwayapi.com/v2/live/train/"+str(train_number)+"/date/"+str(date)+"/apikey/cphfd4goh2/"
 	resp = requests.get(url)
 	parsed_json=json.loads(resp.text);
-	str_ans=parsed_json['position']+"\n"
+	str_ans=str(parsed_json['position'])+"\n"
 	return (str(str_ans))
-# print(live_train_status(12432))
+# print(live_train_status(25631))
 
 def pnr_status(pnr):
 	url="https://api.railwayapi.com/v2/pnr-status/pnr/"+str(pnr)+"/apikey/cphfd4goh2/"
