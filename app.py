@@ -35,9 +35,9 @@ def webhook():
                     # print 'MSH TEXT: ' + message_text
                     # print 'wit call now'
 
-                    # final_message = wit_parser(client.message(str(message_text)))
+                    final_message = wit_parser(client.message(str(message_text)))
 
-                    send_message(sender_id, "HELLO BC")
+                    # send_message(sender_id, "HELLO BC")
 
                 if messaging_event.get("delivery"):  # delivery confirmation
                     pass
