@@ -59,7 +59,10 @@ def wit_parser(resp):
     print ''
     try:
         for entity in resp['entities']:
-            if(entity == 'live_status'):
+            if(entity == 'pnr'):
+                _pnr = resp['entities']['number'][0]['value']
+                return trains.pnr_status(_pnr)
+            elif(entity == 'live_status'):
                 _train_num = resp['entities']['number'][0]['value']
                 return trains.live_train_status(_train_num)
             elif(entity == 'travel_mode'):
