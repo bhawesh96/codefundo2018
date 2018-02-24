@@ -33,9 +33,9 @@ def webhook():
                     recipient_id = messaging_event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
                     message_text = messaging_event["message"]["text"]  # the message's text
                     print 'MSG TEXT: ' + message_text
-                    print 'wit call now'
+                    # print 'wit call now'
 
-                    final_message = wit_parser(client.message(str(message_text)))
+                    # final_message = wit_parser(client.message(str(message_text)))
                     print 'now sending to client'
                     send_message(sender_id, final_message)
 
