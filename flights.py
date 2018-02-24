@@ -61,20 +61,21 @@ def flight_between(src,dest,date,adults,cl='E',show_min=False,children="0",infan
 
 	if show_min==True:
 		min_airline=""
-		min_airline+="Origin:"+data[pos]["origin"]+"\n"
-		min_airline+= "Destination:"+data[pos]["destination"]+"\n"
-		min_airline+="Departure time:"+data[pos]["deptime"]+"\n"
-		min_airline+= "Arrival Time:"+data[pos]["arrtime"]+"\n"
-		min_airline+="Travel Time:"+data[pos]["duration"]+"\n"
-		min_airline+="Airline:"+data[pos]["airline"]+"\n"
-		if(data[pos]["seatsavailable"]>"300"):
-			min_airline+="Seats Available:"+"NA"+"\n"
+		if data[pos]["destination"]==code_dest:
+			min_airline+="Origin:"+data[pos]["origin"]+"\n"
+			min_airline+= "Destination:"+data[pos]["destination"]+"\n"
+			min_airline+="Departure time:"+data[pos]["deptime"]+"\n"
+			min_airline+= "Arrival Time:"+data[pos]["arrtime"]+"\n"
+			min_airline+="Travel Time:"+data[pos]["duration"]+"\n"
+			min_airline+="Airline:"+data[pos]["airline"]+"\n"
+			if(data[pos]["seatsavailable"]>"300"):
+				min_airline+="Seats Available:"+"NA"+"\n"
+			else:
+				min_airline+="Seats:"+data[pos]["seatsavailable"]+"\n"		
+			min_airline+="Fare:"+str(data[pos]["fare"]["grossamount"])+"\n"
+			return str(min_airline)
 		else:
-			min_airline+="Seats:"+data[pos]["seatsavailable"]+"\n"		
-		min_airline+="Fare:"+str(data[pos]["fare"]["grossamount"])+"\n"
-		return str(min_airline)
-	else:
-		return str(res)
+			return str(res)
 
 
 result = flight_between("mumbai","mangalore","20180225",'4')
