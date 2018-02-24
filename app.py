@@ -55,13 +55,16 @@ def wit_parser(resp):
     print ''
     print resp
     print ''
-    for entity in resp['entities']:
-        if(entity == 'travel_mode'):
-            _travel_mode = resp['entities'][entity][0]['value']
-            _source = resp['entities']['location'][0]['value']
-            _destination = resp['entities']['location'][1]['value']
-            if(_travel_mode == 'train'):
-                return trains.train_between(_source, _destination, None), 200
+    try:
+        for entity in resp['entities']:
+            if(entity == 'travel_mode'):
+                _travel_mode = resp['entities'][entity][0]['value']
+                _source = resp['entities']['location'][0]['value']
+                _destination = resp['entities']['location'][1]['value']
+                if(_travel_mode == 'train'):
+                    return trains.train_between(_source, _destination, None), 200
+    except Exception as e:
+        return str(e), 200
     return "Sorry! I'm not smart enough yet!", 200
 
 
