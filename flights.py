@@ -30,7 +30,7 @@ def flight_between(src,dest,date,adults,cl='E',show_min=False,children="0",infan
 	code_src = (get_airport_code(src))
 	code_dest = (get_airport_code(dest))
 	c = cl.upper()
-	ad = adults
+	ad = str(adults)
 	child = children
 	infant = infants
 	url = base_url+"source="+code_src+"&destination="+code_dest+"&dateofdeparture="+date+"&seatingclass="+c+"&adults="+ad+"&children="+child+"&infants="+infant+"&counter=100"
