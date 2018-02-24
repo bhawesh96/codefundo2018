@@ -76,10 +76,11 @@ def flight_between(src,dest,date,adults,cl='E',show_min=False,children="0",infan
 		else:
 			min_airline+="Seats:"+data[pos]["seatsavailable"]+"\n"		
 		min_airline+="Fare:"+str(data[pos]["fare"]["grossamount"])+"\n"
-		return min_airline
+		return str(min_airline)
 	else:
-		return res
+		return str(res)
+
 
 # result = flight_between("mumbai","mangalore","20180225",'4')
 # result = get_airport_code("mumbai")
-# print(result)
+# print(type(result))
