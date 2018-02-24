@@ -1,5 +1,6 @@
 import requests
 import json
+import datetime
 
 app_id="b2f41b4c"
 api_key="<app_key>"
@@ -25,7 +26,7 @@ def get_airport_code(city):
 
 def flight_between(src,dest,date,adults,cl='E',show_min=False,children="0",infants="0"):
 	if(not date):
-		date=datetime.datetime.today().strftime('%Y%m%d')
+		date=str(datetime.datetime.today().strftime('%Y%m%d'))
 	code_src = (get_airport_code(src))
 	code_dest = (get_airport_code(dest))
 	c = cl.upper()
