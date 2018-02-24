@@ -37,7 +37,6 @@ def flight_between(src,dest,date,adults,cl='E',show_min=False,children="0",infan
 	url = base_url+"source="+code_src+"&destination="+code_dest+"&dateofdeparture="+date+"&seatingclass="+c+"&adults="+ad+"&children="+child+"&infants="+infant+"&counter=100"
 	response = requests.get(url)
 	data = response.json()
-	# print data
 	data = data["data"]["onwardflights"]
 
 	m = 100000
