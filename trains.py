@@ -21,16 +21,18 @@ def train_between(f_station, t_station, date):
 	parsed_json=json.loads(resp.text);
 	total_trains=parsed_json['total']
 	str_ans="The following trains are available: \n"
-	for i in range(0, total_trains):
-		str_ans+="Option "+str(i+1)+":\nTrain Number: "+str(parsed_json['trains'][i]['number'])+"\n"
-		str_ans+="Train Name: "+parsed_json['trains'][i]['name']+"\n"
-		str_ans+="Departure: "+parsed_json['trains'][i]['src_departure_time']+"\n"
-		str_ans+="Arrival: "+parsed_json['trains'][i]['dest_arrival_time']+"\n"
-		str_ans+="Duration: "+parsed_json['trains'][i]['travel_time']+"\n"
-		str_ans+='\n'
-	return (str_ans)
-	
-# print(train_between("udupi", "madgaon", "12-03-2018"))
+	try:
+		for i in range(0, total_trains):
+			str_ans+="Option "+str(i+1)+":\nTrain Number: "+str(parsed_json['trains'][i]['number'])+"\n"
+			str_ans+="Train Name: "+parsed_json['trains'][i]['name']+"\n"
+			str_ans+="Departure: "+parsed_json['trains'][i]['src_departure_time']+"\n"
+			str_ans+="Arrival: "+parsed_json['trains'][i]['dest_arrival_time']+"\n"
+			str_ans+="Duration: "+parsed_json['trains'][i]['travel_time']+"\n"
+			str_ans+='\n'
+		return (str_ans)
+	except Exception as e:
+		return "RailwayAPI server error"
+# print(train_between("patna", "howrah", "25-02-2018"))
 
 def live_train_status(train_number):
 	date=datetime.datetime.today().strftime('%d-%m-%Y')
