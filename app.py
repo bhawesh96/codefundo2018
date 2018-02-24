@@ -22,6 +22,7 @@ def verify():
 
 @app.route('/', methods=['POST'])
 def webhook():
+    print 'request came from messenger'
     data = request.get_json()
     if data["object"] == "page":
 
