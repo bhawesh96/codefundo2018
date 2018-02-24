@@ -75,7 +75,7 @@ def wit_parser(resp):
                     return trains.train_between(_source, _destination, None)
                 elif(_travel_mode == 'flight'):
                     _adults = resp['entities']['number'][0]['value']
-                    return flights.flight_between(_source, _destination,None, _adults)
+                    return flights.flight_between(_source, _destination,'20180225', _adults)
     except Exception as e:
         return 'app.py error: ' + str(e)
     return "Sorry! I'm not smart enough yet!"

@@ -27,6 +27,7 @@ def get_airport_code(city):
 def flight_between(src,dest,date,adults,cl='E',show_min=False,children="0",infants="0"):
 	if(not date):
 		date=str(datetime.datetime.today().strftime('%Y%m%d'))
+	print date
 	code_src = (get_airport_code(src))
 	code_dest = (get_airport_code(dest))
 	c = 'E'
@@ -36,6 +37,7 @@ def flight_between(src,dest,date,adults,cl='E',show_min=False,children="0",infan
 	url = base_url+"source="+code_src+"&destination="+code_dest+"&dateofdeparture="+date+"&seatingclass="+c+"&adults="+ad+"&children="+child+"&infants="+infant+"&counter=100"
 	response = requests.get(url)
 	data = response.json()
+	print data
 	data = data["data"]["onwardflights"]
 
 	m = 100000
@@ -79,6 +81,6 @@ def flight_between(src,dest,date,adults,cl='E',show_min=False,children="0",infan
 	else:
 		return res
 
-# result = flight_between("mumbai","mangalore","20180301",'1')
+result = flight_between("mumbai","mangalore","20180225",'4')
 # result = get_airport_code("mumbai")
-# print(result)
+print(result)
