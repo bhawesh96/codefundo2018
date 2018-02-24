@@ -1,11 +1,11 @@
-#cphfd4goh2
+#<api_key>
 import json, requests
 import urllib
 import datetime
 
 
 def name_to_code(station_name):
-	url="https://api.railwayapi.com/v2/name-to-code/station/"+station_name+"/apikey/cphfd4goh2/"
+	url="https://api.railwayapi.com/v2/name-to-code/station/"+station_name+"/apikey/<api_key>/"
 	resp = requests.get(url)
 	parsed_json=json.loads(resp.text);
 	str_ans=parsed_json['stations'][0]['code']
@@ -17,7 +17,7 @@ def train_between(f_station, t_station, date):
 		date=datetime.datetime.today().strftime('%d-%m-%Y')
 	from_station=name_to_code(f_station)
 	to_station=name_to_code(t_station)
-	url="https://api.railwayapi.com/v2/between/source/"+from_station+"/dest/"+to_station+"/date/"+date+"/apikey/cphfd4goh2/"
+	url="https://api.railwayapi.com/v2/between/source/"+from_station+"/dest/"+to_station+"/date/"+date+"/apikey/<api_key>/"
 	resp = requests.get(url)
 	parsed_json=json.loads(resp.text);
 	total_trains=parsed_json['total']
@@ -37,7 +37,7 @@ def train_between(f_station, t_station, date):
 
 def live_train_status(train_number):
 	date=datetime.datetime.today().strftime('%d-%m-%Y')
-	url="https://api.railwayapi.com/v2/live/train/"+str(train_number)+"/date/"+str(date)+"/apikey/cphfd4goh2/"
+	url="https://api.railwayapi.com/v2/live/train/"+str(train_number)+"/date/"+str(date)+"/apikey/<api_key>/"
 	resp = requests.get(url)
 	try:
 		parsed_json=json.loads(resp.text);
@@ -48,7 +48,7 @@ def live_train_status(train_number):
 # print(live_train_status(25631))
 
 def pnr_status(pnr):
-	url="https://api.railwayapi.com/v2/pnr-status/pnr/"+str(pnr)+"/apikey/cphfd4goh2/"
+	url="https://api.railwayapi.com/v2/pnr-status/pnr/"+str(pnr)+"/apikey/<api_key>/"
 	resp = requests.get(url)
 	try:
 		parsed_json=json.loads(resp.text);
