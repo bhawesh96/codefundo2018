@@ -3,6 +3,7 @@ import json, requests
 import urllib
 import datetime
 
+
 def name_to_code(station_name):
 	url="https://api.railwayapi.com/v2/name-to-code/station/"+station_name+"/apikey/cphfd4goh2/"
 	resp = requests.get(url)

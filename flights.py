@@ -29,7 +29,7 @@ def flight_between(src,dest,date,adults,cl='E',show_min=False,children="0",infan
 		date=str(datetime.datetime.today().strftime('%Y%m%d'))
 	code_src = (get_airport_code(src))
 	code_dest = (get_airport_code(dest))
-	c = cl.upper()
+	c = 'E'
 	ad = str(adults)
 	child = children
 	infant = infants
@@ -79,5 +79,6 @@ def flight_between(src,dest,date,adults,cl='E',show_min=False,children="0",infan
 	else:
 		return res
 
-# result = search("mumbai","mangalore","20180301",'E','1')
+# result = flight_between("mumbai","mangalore","20180301",'1')
+# result = get_airport_code("mumbai")
 # print(result)

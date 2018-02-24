@@ -1,7 +1,9 @@
 from wit import Wit
 import trains
-import flights
+import flights, requests, json
 import datetime
+
+base_url="http://developer.goibibo.com/api/search/?app_id=b2f41b4c&app_key=<app_key>&format=json&"
 
 client = Wit('***REMOVED***')
 
