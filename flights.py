@@ -78,6 +78,6 @@ def flight_between(src,dest,date,adults,cl='E',show_min=False,children="0",infan
 			return str(res)
 
 
-result = flight_between("mumbai","mangalore","20180225",'4')
+#result = flight_between("mumbai","mangalore","20180225",'4')
 # result = get_airport_code("mumbai")
-print(result)
+#print(result)
