@@ -38,7 +38,7 @@ def webhook():
                     # print 'wit call now'
 
                     final_message = wit_parser(client.message(str(message_text)))
-                    time.sleep(2)
+                    # time.sleep(2)
                     send_message(sender_id, final_message)
 
                 if messaging_event.get("delivery"):  # delivery confirmatio
