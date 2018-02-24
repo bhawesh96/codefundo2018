@@ -1,0 +1,9 @@
+beautifulsoup4==4.4.1
+Flask==0.12.2
+httplib2==0.9.1
+gunicorn==19.7.1
+itsdangerous==0.24
+Jinja2==2.9.6
+requests==2.18.4
+Werkzeug==0.12.2
+wit==5.0.0
