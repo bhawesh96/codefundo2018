@@ -38,30 +38,36 @@ def live_train_status(train_number):
 	date=datetime.datetime.today().strftime('%d-%m-%Y')
 	url="https://api.railwayapi.com/v2/live/train/"+str(train_number)+"/date/"+str(date)+"/apikey/cphfd4goh2/"
 	resp = requests.get(url)
-	parsed_json=json.loads(resp.text);
-	str_ans=str(parsed_json['position'])+"\n"
-	return (str(str_ans))
+	try:
+		parsed_json=json.loads(resp.text);
+		str_ans=parsed_json['position']+"\n"
+		return (str(str_ans))
+	except Exception as e:
+		return "RailwayAPI server error"
 # print(live_train_status(25631))
 
 def pnr_status(pnr):
 	url="https://api.railwayapi.com/v2/pnr-status/pnr/"+str(pnr)+"/apikey/cphfd4goh2/"
 	resp = requests.get(url)
-	parsed_json=json.loads(resp.text);
-	total_passengers=parsed_json['total_passengers']
-	str_ans="Your current PNR status is as follows: \n"
-	str_ans+="PNR: "+str(pnr)+"\n"
-	str_ans+="Date of Journey: "+parsed_json['doj']+"\n"
-	str_ans+="Total Passengers: "+str(total_passengers)+"\n"
-	str_ans+="Chart Prepared: "+str(parsed_json['chart_prepared'])+"\n"
-	str_ans+="From: "+parsed_json['from_station']['name']+"\n"
-	str_ans+="To: "+parsed_json['to_station']['name']+"\n"
-	str_ans+="Reservation upto: "+parsed_json['reservation_upto']['name']+"\n"
-	str_ans+="Train Name: "+parsed_json['train']['name']+"\n"
-	str_ans+="Train Number: "+parsed_json['train']['number']+"\n"
-	p_list=parsed_json['passengers']
-	for i in range(0, total_passengers):
-		str_ans+="Passenger "+str(i+1)+str(p_list[i]['no'])+"\n"
-		str_ans+="Current Status: "+p_list[i]['current_status']+"\n"
-		str_ans+="Status at the time of booking: "+p_list[i]['booking_status']+"\n"
-	return(str_ans)
+	try:
+		parsed_json=json.loads(resp.text);
+		total_passengers=parsed_json['total_passengers']
+		str_ans="Your current PNR status is as follows: \n"
+		str_ans+="PNR: "+str(pnr)+"\n"
+		str_ans+="Date of Journey: "+parsed_json['doj']+"\n"
+		str_ans+="Total Passengers: "+str(total_passengers)+"\n"
+		str_ans+="Chart Prepared: "+str(parsed_json['chart_prepared'])+"\n"
+		str_ans+="From: "+parsed_json['from_station']['name']+"\n"
+		str_ans+="To: "+parsed_json['to_station']['name']+"\n"
+		str_ans+="Reservation upto: "+parsed_json['reservation_upto']['name']+"\n"
+		str_ans+="Train Name: "+parsed_json['train']['name']+"\n"
+		str_ans+="Train Number: "+parsed_json['train']['number']+"\n"
+		p_list=parsed_json['passengers']
+		for i in range(0, total_passengers):
+			str_ans+="Passenger "+str(i+1)+str(p_list[i]['no'])+"\n"
+			str_ans+="Current Status: "+p_list[i]['current_status']+"\n"
+			str_ans+="Status at the time of booking: "+p_list[i]['booking_status']+"\n"
+		return(str_ans)
+	except Exception as e:
+		return "RailwayAPI server error"
 # print(pnr_status(4759809237))
