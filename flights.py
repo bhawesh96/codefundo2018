@@ -41,25 +41,30 @@ def flight_between(src,dest,date,adults,cl='E',show_min=False,children="0",infan
 
 	m = 100000
 	res = ""
-	for j,row in enumerate(data):
-		if(row["destination"]==code_dest):
-			res=res+"Origin:"+row["origin"]+"\n"
-			res=res+"Destination:"+row["destination"]+"\n"
-			res=res+"Departure time:"+row["deptime"]+"\n"
-			res=res+"Arrival Time:"+row["arrtime"]+"\n"
-			res+="Travel Time:"+row["duration"]+"\n"
-			res+="Airline:"+row["airline"]+"\n"
-			if(row["seatsavailable"]>"300"):
-				res+="Seats Available:"+"NA"+"\n"
-			else:
-				res+="Seats:"+row["seatsavailable"]+"\n"
-			res+="Fare:"+str(row["fare"]["grossamount"])+"\n"
-			if row["fare"]["grossamount"]<=m:
-				m=row["fare"]["grossamount"]
-				pos = j
-			res=res+"\n"
-
-	if show_min==True:
+	if show_min==False:
+		i=0
+		for j,row in enumerate(data):
+			if(row["destination"]==code_dest):
+				res=res+"Origin:"+row["origin"]+"\n"
+				res=res+"Destination:"+row["destination"]+"\n"
+				res=res+"Departure time:"+row["deptime"]+"\n"
+				res=res+"Arrival Time:"+row["arrtime"]+"\n"
+				res+="Travel Time:"+row["duration"]+"\n"
+				res+="Airline:"+row["airline"]+"\n"
+				if(row["seatsavailable"]>"300"):
+					res+="Seats Available:"+"NA"+"\n"
+				else:
+					res+="Seats:"+row["seatsavailable"]+"\n"
+				res+="Fare:"+str(row["fare"]["grossamount"])+"\n"
+				i=i+1
+				if row["fare"]["grossamount"]<=m:
+					m=row["fare"]["grossamount"]
+					pos = j
+				res=res+"\n"
+				if i==7:
+					break
+		return str(res)
+	else:
 		min_airline=""
 		if data[pos]["destination"]==code_dest:
 			min_airline+="Origin:"+data[pos]["origin"]+"\n"
@@ -74,10 +79,8 @@ def flight_between(src,dest,date,adults,cl='E',show_min=False,children="0",infan
 				min_airline+="Seats:"+data[pos]["seatsavailable"]+"\n"		
 			min_airline+="Fare:"+str(data[pos]["fare"]["grossamount"])+"\n"
 			return str(min_airline)
-		else:
-			return str(res)
 
 
-#result = flight_between("mumbai","mangalore","20180225",'4')
+#result = flight_between("mumbai","bangalore","20180226",'4',False)
 # result = get_airport_code("mumbai")
 #print(result)
