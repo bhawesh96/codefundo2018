@@ -42,26 +42,22 @@ def flight_between(src,dest,date,adults,cl='E',show_min=False,children="0",infan
 	m = 100000
 	res = ""
 	for j,row in enumerate(data):
-		res=res+"Origin:"+row["origin"]+"\n"
-		res=res+"Destination:"+row["destination"]+"\n"
-		res=res+"Departure time:"+row["deptime"]+"\n"
-		res=res+"Arrival Time:"+row["arrtime"]+"\n"
-		res+="Travel Time:"+row["duration"]+"\n"
-		res+="Airline:"+row["airline"]+"\n"
-		if(row["seatsavailable"]>"300"):
-			res+="Seats Available:"+"NA"+"\n"
-		else:
-			res+="Seats:"+row["seatsavailable"]+"\n"
-		res+="Fare:"+str(row["fare"]["grossamount"])+"\n"
-		if row["fare"]["grossamount"]<=m:
-			m=row["fare"]["grossamount"]
-			pos = j
-		if row["destination"]!=code_dest:
-			res+="Onward Source:"+row["onwardflights"][0]["origin"]+"\n"
-			res+="Destination:"+row["onwardflights"][0]["destination"]+"\n"
-			res+="Departure time:"+row["onwardflights"][0]["deptime"]+"\n"
-			res+="Onward Airline:"+row["onwardflights"][0]["airline"]+"\n"
-		res=res+"\n"
+		if(row["destination"]==code_dest):
+			res=res+"Origin:"+row["origin"]+"\n"
+			res=res+"Destination:"+row["destination"]+"\n"
+			res=res+"Departure time:"+row["deptime"]+"\n"
+			res=res+"Arrival Time:"+row["arrtime"]+"\n"
+			res+="Travel Time:"+row["duration"]+"\n"
+			res+="Airline:"+row["airline"]+"\n"
+			if(row["seatsavailable"]>"300"):
+				res+="Seats Available:"+"NA"+"\n"
+			else:
+				res+="Seats:"+row["seatsavailable"]+"\n"
+			res+="Fare:"+str(row["fare"]["grossamount"])+"\n"
+			if row["fare"]["grossamount"]<=m:
+				m=row["fare"]["grossamount"]
+				pos = j
+			res=res+"\n"
 
 	if show_min==True:
 		min_airline=""
@@ -81,6 +77,6 @@ def flight_between(src,dest,date,adults,cl='E',show_min=False,children="0",infan
 		return str(res)
 
 
-# result = flight_between("mumbai","mangalore","20180225",'4')
+result = flight_between("mumbai","mangalore","20180225",'4')
 # result = get_airport_code("mumbai")
-# print(type(result))
+print(result)
