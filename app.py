@@ -67,7 +67,7 @@ def wit_parser(resp):
             if(entity == 'phrase_to_translate'):
                 _text = resp['entities']['phrase_to_translate'][0]['value']
                 _lang = resp['_text'].split()[-1]
-                return (str(_text) + ' in ' + str(_lang) + ' is ' +  str(translate.trans(_text, _lang)))
+                return ("'" + str(_text) + "'" + ' in ' + str(_lang) + ' is => \n' +  str(translate.trans(_text, _lang)))
             elif(entity == 'hotel'):
                 _destination = resp['entities']['location'][0]['value']
                 return hotels.hotel_in(_destination)
