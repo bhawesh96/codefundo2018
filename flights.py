@@ -55,7 +55,7 @@ def flight_between(src,dest,date,adults,cl='E',show_min=False,children="0",infan
 					res+="Seats Available:"+"NA"+"\n"
 				else:
 					res+="Seats:"+row["seatsavailable"]+"\n"
-				res+="Fare:"+str(row["fare"]["grossamount"])+"\n"
+				res+="Total Fare:"+str(row["fare"]["grossamount"])+"\n"
 				i=i+1
 				if row["fare"]["grossamount"]<=m:
 					m=row["fare"]["grossamount"]

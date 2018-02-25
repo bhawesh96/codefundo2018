@@ -9,9 +9,11 @@ base_url="http://developer.goibibo.com/api/search/?app_id=b2f41b4c&app_key=<app_
 
 client = Wit('***REMOVED***')
 
-resp = client.message('translate My name is bHawes in german')
+resp = client.message('flight from mumbai to pune 4 tickets')
 
 def wit_parser(resp):
+    print 'resp from WIT'
+    print ''
     print resp
     print ''
     for entity in resp['entities']:
@@ -37,8 +39,9 @@ def wit_parser(resp):
             elif(_travel_mode == 'bus'):
                 return buses.bus_between(_source, _destination,'20180225')
             elif(_travel_mode == 'flight'):
-                _adults = resp['entities']['number'][0]['value']
+                _adults = '1'
+                if('number' in resp['entities']):
+                    _adults = resp['entities']['number'][0]['value']
                 return flights.flight_between(_source, _destination,'20180225', _adults)
-
 
 print wit_parser(resp)

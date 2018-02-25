@@ -86,7 +86,9 @@ def wit_parser(resp):
                 elif(_travel_mode == 'bus'):
                     return buses.bus_between(_source, _destination,'20180225')
                 elif(_travel_mode == 'flight'):
-                    _adults = resp['entities']['number'][0]['value']
+                    _adults = '1'
+                    if('number' in resp['entities']):
+                        _adults = resp['entities']['number'][0]['value']
                     return flights.flight_between(_source, _destination,'20180225', _adults)
                 
     except Exception as e:
