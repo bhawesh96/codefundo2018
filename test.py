@@ -3,18 +3,26 @@ import trains
 import flights, requests, json
 import datetime
 import buses
+import translate
 
 base_url="http://developer.goibibo.com/api/search/?app_id=b2f41b4c&app_key=<app_key>&format=json&"
 
 client = Wit('***REMOVED***')
 
-resp = client.message('buses from Manipal to Bangalore`')
+resp = client.message('translate My name is bHawes in german')
 
 def wit_parser(resp):
     print resp
     print ''
     for entity in resp['entities']:
-        if(entity == 'pnr'):
+        if(entity == 'phrase_to_translate'):
+            _text = resp['entities']['phrase_to_translate'][0]['value']
+            _lang = resp['_text'].split()[-1]
+            return str(translate.trans(_text, _lang))
+        elif(entity == 'hotel'):
+            _destination = resp['entities']['location'][0]['value']
+            return hotels.hotel_in(_destination)
+        elif(entity == 'pnr'):
             _pnr = resp['entities']['number'][0]['value']
             return trains.pnr_status(_pnr)
         elif(entity == 'live_status'):

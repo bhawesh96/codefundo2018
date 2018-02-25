@@ -5,6 +5,7 @@ import trains
 import flights
 import buses
 import hotels
+import translate
 from wit import Wit
 import time
 
@@ -63,10 +64,14 @@ def wit_parser(resp):
     print ''
     try:
         for entity in resp['entities']:
-            if(entity == 'hotel'):
+            if(entity == 'phrase_to_translate'):
+                _text = resp['entities']['phrase_to_translate'][0]['value']
+                _lang = resp['_text'].split()[-1]
+                return str(translate.trans(_text, _lang))
+            elif(entity == 'hotel'):
                 _destination = resp['entities']['location'][0]['value']
                 return hotels.hotel_in(_destination)
-            if(entity == 'pnr'):
+            elif(entity == 'pnr'):
                 _pnr = resp['entities']['number'][0]['value']
                 return trains.pnr_status(_pnr)
             elif(entity == 'live_status'):
