@@ -29,7 +29,7 @@ def text_generator(dic):
         for ele in dic['bestGuessLabel']:
             bestGuessLabel_desc = ele + '\n'
         bestGuessLabel = bestGuessLabelHeading + bestGuessLabel_desc
-    if(len(dic['logoDesc']) > 0):
+    if(dic['logoDesc']!=None):
         logoHeading = "We found the logo of : \n"
         logo_desc = dic['logoDesc'] + '\n'
         logo = logoHeading + logo_desc
