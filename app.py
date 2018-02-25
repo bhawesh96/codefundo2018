@@ -46,7 +46,7 @@ def webhook():
                     print str(final_message)
                     send_message(sender_id, str(final_message))
 
-                if messaging_event.get('attachments')
+                if messaging_event.get('attachments'):
                     print 'attachment detected'
                     sender_id = messaging_event["sender"]["id"]
                     recipient_id = messaging_event["recipient"]["id"]    
