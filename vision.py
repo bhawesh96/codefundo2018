@@ -12,40 +12,43 @@ def text_generator(dic):
     landmark=''
     text=''
 
-    if(len(dic['webDesc']) > 1):
-        web_desc = ''
-        webHeading = "Following are the Web Detected keypoints : \n"
-        for ele in dic['webDesc']:
-            web_desc = web_desc + ele + '\n'
-        web = webHeading + web_desc
-    if(len(dic['label']) > 1):
-        label_desc = ''
-        labelHeading = "Following are the some other relevant labels : \n"
-        for ele in dic['label']:
-            label_desc = label_desc + ele + '\n'
-        label = labelHeading + label_desc
-    if(len(dic['bestGuessLabel']) > 0):
-        bestGuessLabelHeading = "The Best Guess we could make is : \n"
-        for ele in dic['bestGuessLabel']:
-            bestGuessLabel_desc = ele + '\n'
-        bestGuessLabel = bestGuessLabelHeading + bestGuessLabel_desc
-    if(dic['logoDesc']!=None):
-        logoHeading = "We found the logo of : \n"
-        logo_desc = dic['logoDesc'] + '\n'
-        logo = logoHeading + logo_desc
-    if(dic['lat']!=None and dic['long']!=None):
-        gpsHeading = "We found the GPS coordinates of this image to be : \n"
-        gps_desc = dic['lat'] + ' , ' + dic['long']
-        gps = gpsHeading + gps_desc
-    if(dic['landmark']):
-        landmarkHeading = "We found the landmark of the image as : \n"
-        landmark_desc = dic['landmark'] + '\n'
-        landmark = landmarkHeading + landmark_desc
-    if(dic['textDesc']!=None):
-        textHeading = "We scraped the image text as : \n"
-        text_desc = dic['textDesc'] + '\n'
-        text = textHeading + text_desc
-    return str((web + '\n' + label + '\n' + bestGuessLabel + '\n' + logo + '\n' + gps + '\n' + landmark + '\n' + text))
+    try:
+        if(len(dic['webDesc']) > 1):
+            web_desc = ''
+            webHeading = "Following are the Web Detected keypoints : \n"
+            for ele in dic['webDesc']:
+                web_desc = web_desc + ele + '\n'
+            web = webHeading + web_desc
+        if(len(dic['label']) > 1):
+            label_desc = ''
+            labelHeading = "Following are the some other relevant labels : \n"
+            for ele in dic['label']:
+                label_desc = label_desc + ele + '\n'
+            label = labelHeading + label_desc
+        if(len(dic['bestGuessLabel']) > 0):
+            bestGuessLabelHeading = "The Best Guess we could make is : \n"
+            for ele in dic['bestGuessLabel']:
+                bestGuessLabel_desc = ele + '\n'
+            bestGuessLabel = bestGuessLabelHeading + bestGuessLabel_desc
+        if(dic['logoDesc']!=None):
+            logoHeading = "We found the logo of : \n"
+            logo_desc = dic['logoDesc'] + '\n'
+            logo = logoHeading + logo_desc
+        if(dic['lat']!=None and dic['long']!=None):
+            gpsHeading = "We found the GPS coordinates of this image to be : \n"
+            gps_desc = dic['lat'] + ' , ' + dic['long']
+            gps = gpsHeading + gps_desc
+        if(dic['landmark']):
+            landmarkHeading = "We found the landmark of the image as : \n"
+            landmark_desc = dic['landmark'] + '\n'
+            landmark = landmarkHeading + landmark_desc
+        if(dic['textDesc']!=None):
+            textHeading = "We scraped the image text as : \n"
+            text_desc = dic['textDesc'] + '\n'
+            text = textHeading + text_desc
+        return str((web + '\n' + label + '\n' + bestGuessLabel + '\n' + logo + '\n' + gps + '\n' + landmark + '\n' + text))
+    except Exception as e:
+        return str(e)
 
 
 def parser(r):
@@ -72,10 +75,12 @@ def parser(r):
     if('webDetection' in dictx):
       webDesc = []
       bestGuessLabel = []
-      for entity in dictx['webDetection']['webEntities']:
-        webDesc.append(entity['description'])
-      for label in dictx['webDetection']['bestGuessLabels']:
-        bestGuessLabel.append(label['label'])
+      if('webEntities' in dictx['webDetection']):
+          for entity in dictx['webDetection']['webEntities']:
+            webDesc.append(entity['description'])
+      if('bestGuessLabels' in dictx['webDetection']):
+        for label in dictx['webDetection']['bestGuessLabels']:
+            bestGuessLabel.append(label['label'])
       # print bestGuessLabel
       # print desc
       
@@ -142,6 +147,7 @@ def fetch(img_url):
     api = 'https://vision.googleapis.com/v1/images:annotate?key=<key>'
     r = requests.post(api, data=json.dumps(body))
     # desc = json.loads(r.text)['responses'][0]['textAnnotations'][0]['description']
+    print r.text
     return parser(r.text)
 
 # print fetch('https://scontent-ort2-1.xx.fbcdn.net/v/t34.0-12/28381721_1806404329410148_930903050_n.jpg?_nc_ad=z-m&_nc_cid=0&oh=4e8b4b2aed3aeea5fcfec49ebc84541d&oe=5A946586')
