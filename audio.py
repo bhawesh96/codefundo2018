@@ -2,7 +2,7 @@ import os
 import cloudconvert, requests
 import speech_recognition as sr
 
-def download(audio_url)
+def download(audio_url):
     print 'download function'
 
     r = requests.get(audio_url) # create HTTP response object
