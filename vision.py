@@ -79,8 +79,9 @@ def parser(r):
           for entity in dictx['webDetection']['webEntities']:
             webDesc.append(entity['description'])
       if('bestGuessLabels' in dictx['webDetection']):
-        for label in dictx['webDetection']['bestGuessLabels']:
-            bestGuessLabel.append(label['label'])
+        if('label' in dictx['webDetection']['bestGuessLabels']):
+            for label in dictx['webDetection']['bestGuessLabels']:
+                bestGuessLabel.append(label['label'])
       # print bestGuessLabel
       # print desc
       
