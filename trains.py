@@ -12,9 +12,11 @@ def name_to_code(station_name):
 	return(str_ans)
 # print(name_to_code("udupi"))
 
-def train_between(f_station, t_station, date):
-	if(not date):
+def train_between(f_station, t_station, datex):
+	if(not datex):
 		date=datetime.datetime.today().strftime('%d-%m-%Y')
+	else:
+		date = datetime.datetime.strptime(datex, '%Y%m%d').strftime('%d-%m-%Y')
 	from_station=name_to_code(f_station)
 	to_station=name_to_code(t_station)
 	url="https://api.railwayapi.com/v2/between/source/"+from_station+"/dest/"+to_station+"/date/"+date+"/apikey/<api_key>/"
