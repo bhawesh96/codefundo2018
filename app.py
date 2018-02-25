@@ -38,13 +38,15 @@ def webhook():
 
                     sender_id = messaging_event["sender"]["id"]        # the facebook ID of the person sending you the message
                     recipient_id = messaging_event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
-                    message_text = messaging_event["message"]["text"]  # the message's text
-                    print 'MSG TEXT: ' + message_text
+
+                    if('text' in message_event["message"]):
+                        message_text = messaging_event["message"]["text"]  # the message's text
+                        print 'MSG TEXT: ' + message_text
                     # print 'wit call now'
 
-                    final_message = wit_parser(client.message(str(message_text)))
-                    print str(final_message)
-                    send_message(sender_id, str(final_message))
+                        final_message = wit_parser(client.message(str(message_text)))
+                        print str(final_message)
+                        send_message(sender_id, str(final_message))
 
                 if messaging_event.get('attachments'):
                     print 'attachment detected'
