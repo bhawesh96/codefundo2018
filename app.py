@@ -27,7 +27,6 @@ def verify():
 
 @app.route('/', methods=['POST'])
 def webhook():
-    print 'request came from messenger'
     data = request.get_json()
     if data["object"] == "page":
 
@@ -48,15 +47,15 @@ def webhook():
                         print str(final_message)
                         send_message(sender_id, str(final_message))
 
-                if messaging_event.get('attachments'):
-                    print 'attachment detected'
-                    sender_id = messaging_event["sender"]["id"]
-                    recipient_id = messaging_event["recipient"]["id"]    
-                    attach_type = messaging_event["message"]["attachments"][0]['type']
-                    attach_url = messaging_event["message"]["attachments"][0]['payload']['url']
-                    print str(attach_type)
-                    print str(attach_url)
-                    send_message(sender_id, str(attach_type) + '' + str(attach_url))
+                    if('attachments' in messaging_event["message"]):
+                        print 'attachment detected'
+                        sender_id = messaging_event["sender"]["id"]
+                        recipient_id = messaging_event["recipient"]["id"]    
+                        attach_type = messaging_event["message"]["attachments"][0]['type']
+                        attach_url = messaging_event["message"]["attachments"][0]['payload']['url']
+                        print str(attach_type)
+                        print str(attach_url)
+                        send_message(sender_id, str(attach_type) + '' + str(attach_url))
 
 
                 if messaging_event.get("delivery"):  # delivery confirmatio
