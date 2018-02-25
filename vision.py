@@ -36,7 +36,7 @@ def text_generator(dic):
             logo = logoHeading + logo_desc
         if(dic['lat']!=None and dic['long']!=None):
             gpsHeading = "We found the GPS coordinates of this image to be : \n"
-            gps_desc = dic['lat'] + ' , ' + dic['long']
+            gps_desc = str(dic['lat']) + ' , ' + str(dic['long'])
             gps = gpsHeading + gps_desc
         if(dic['landmark']):
             landmarkHeading = "We found the landmark of the image as : \n"
