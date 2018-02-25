@@ -148,8 +148,10 @@ def fetch(img_url):
     api = 'https://vision.googleapis.com/v1/images:annotate?key=<key>'
     r = requests.post(api, data=json.dumps(body))
     # desc = json.loads(r.text)['responses'][0]['textAnnotations'][0]['description']
-    print r.text
+    print (r.text).encode('utf8')
     return parser(r.text)
+
+print fetch('https://scontent-ort2-1.xx.fbcdn.net/v/t35.0-12/28554940_1806587232725191_2113904023_o.jpg?_nc_ad=z-m&_nc_cid=0&oh=a640a31c708e0e9da6526215c87e291c&oe=5A942F41')
 
 # print fetch('https://scontent-ort2-1.xx.fbcdn.net/v/t34.0-12/28381721_1806404329410148_930903050_n.jpg?_nc_ad=z-m&_nc_cid=0&oh=4e8b4b2aed3aeea5fcfec49ebc84541d&oe=5A946586')
 
