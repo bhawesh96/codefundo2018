@@ -151,8 +151,6 @@ def fetch(img_url):
     print (r.text).encode('utf8')
     return parser(r.text)
 
-# print fetch('https://ncmedia.azureedge.net/ncmedia/2017/01/microsoft-hyderabad-campus-virtual-tou')
-
 # print fetch('https://scontent-ort2-1.xx.fbcdn.net/v/t34.0-12/28381721_1806404329410148_930903050_n.jpg?_nc_ad=z-m&_nc_cid=0&oh=4e8b4b2aed3aeea5fcfec49ebc84541d&oe=5A946586')
 
 # print fetch('https://scontent-ort2-1.xx.fbcdn.net/v/t35.0-12/28418504_1806411499409431_82324897_o.jpg?_nc_ad=z-m&_nc_cid=0&oh=79365c88be0d5335b6a0a71d41539c54&oe=5A945ABF')
