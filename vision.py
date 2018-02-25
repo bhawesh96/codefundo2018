@@ -42,7 +42,7 @@ def text_generator(dic):
             landmarkHeading = "We found the landmark of the image as : \n"
             landmark_desc = dic['landmark'] + '\n'
             landmark = landmarkHeading + landmark_desc
-        if(dic['textDesc']!=None):
+        if(len(dic['textDesc']) > 1):
             textHeading = "We scraped the image text as : \n"
             text_desc = dic['textDesc'] + '\n'
             text = textHeading + text_desc
@@ -79,7 +79,7 @@ def parser(r):
         for entity in dictx['webDetection']['webEntities']:
           webDesc.append(entity['description'])
       if('bestGuessLabels' in dictx['webDetection']):
-        if('label' in dictx['webDetection']['bestGuessLabels']):
+        if('label' in dictx['webDetection']['bestGuessLabels'][0]):
           for label in dictx['webDetection']['bestGuessLabels']:
             bestGuessLabel.append(label['label'])
       # print bestGuessLabel
@@ -151,7 +151,7 @@ def fetch(img_url):
     print (r.text).encode('utf8')
     return parser(r.text)
 
-print fetch('https://scontent-ort2-1.xx.fbcdn.net/v/t35.0-12/28554940_1806587232725191_2113904023_o.jpg?_nc_ad=z-m&_nc_cid=0&oh=a640a31c708e0e9da6526215c87e291c&oe=5A942F41')
+print fetch('https://ncmedia.azureedge.net/ncmedia/2017/01/microsoft-hyderabad-campus-virtual-tour.jpg')
 
 # print fetch('https://scontent-ort2-1.xx.fbcdn.net/v/t34.0-12/28381721_1806404329410148_930903050_n.jpg?_nc_ad=z-m&_nc_cid=0&oh=4e8b4b2aed3aeea5fcfec49ebc84541d&oe=5A946586')
 
