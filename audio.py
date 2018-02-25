@@ -9,7 +9,7 @@ def fetch(audio_url):
     with open("my_audio.mp4",'wb') as f:
         f.write(r.content)
 
-    api = cloudconvert.Api('Lf7XKkFzy7bHhfRx6LFryDDXm4LCtzt2ECRoY_t8uxuinnk2ZX41BFfHUAdIolpr72p3roC-ky-42_N5qnUVDw')
+    api = cloudconvert.Api('***REMOVED***')
 
     file_name = os.path.join(
         os.path.dirname(__file__),
