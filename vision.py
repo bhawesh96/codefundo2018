@@ -1,23 +1,29 @@
 import requests, json
+import os, io, base64
 
-features = [
-    {
-      "type":"TEXT_DETECTION",
-      "maxResults":3
-    }
-]
-
+import urllib
 
 def fetch(img_url):
+    urllib.urlretrieve(img_url, "my_image.jpg")
+    file_name = os.path.join(
+    os.path.dirname(__file__),
+    'my_image.jpg')
+
+    with io.open(file_name, 'rb') as image_file:
+        # content = image_file.read()
+        content = base64.b64encode(image_file.read())
     body = {
       "requests":[
         {
           "image":{
-            "source":{
-              "imageUri": img_url
-            }
+            "content":content
           },
-          "features": features
+          "features":[
+            {
+              "type":"TEXT_DETECTION",
+              "maxResults":2
+            }
+          ]
         }
       ]
     }
@@ -25,6 +31,8 @@ def fetch(img_url):
     r = requests.post(api, data=json.dumps(body))
     desc = json.loads(r.text)['responses'][0]['textAnnotations'][0]['description']
     return str(desc)
+
+# print fetch('https://scontent-ort2-1.xx.fbcdn.net/v/t34.0-12/28381721_1806404329410148_930903050_n.jpg?_nc_ad=z-m&_nc_cid=0&oh=4e8b4b2aed3aeea5fcfec49ebc84541d&oe=5A946586')
 '''
 def parse(r):
     resp = json.loads(r)
