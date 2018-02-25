@@ -64,12 +64,16 @@ def webhook():
                         if(attach_type == 'audio'):
                             send_message(sender_id, 'received')
                             print 'now fetching'
-                            # res = str(audio.fetch(attach_url))
-                            # send_message(sender_id, res)
-                            # print 'now WIT'
-                            # final_message = wit_parser(client.message(str(message_text)))
-                            # print str(final_message)
-                            # send_message(sender_id, str(final_message))
+                            res = str(audio.download(attach_url))
+                            send_message(sender_id, res)
+                            res = str(audio.convert())
+                            send_message(sender_id, res)
+                            print 'now text conversion'
+                            res = str(audio.fetch())
+                            send_message(sender_id, res)
+                            final_message = wit_parser(client.message(str(res)))
+                            print str(final_message)
+                            send_message(sender_id, str(final_message))
 
 
                 if messaging_event.get("delivery"):  # delivery confirmatio
