@@ -9,6 +9,7 @@ import translate
 from wit import Wit
 import time
 import vision
+import audio
 
 
 app = Flask(__name__)
@@ -58,8 +59,11 @@ def webhook():
                         print str(attach_url)
                         if(attach_type == 'image'):
                             textx = str(vision.fetch(attach_url))
-                        msg = "Result after text analysis is " + textx
-                        send_message(sender_id, msg)
+                            msg = "Result after IMAGE ANALYSIS is \n " + textx
+                            send_message(sender_id, msg)
+                        if(attach_type == 'audio'):
+                            res = str(audio.fetch(attach_url))
+                            send_message(sender_id, res)
 
 
                 if messaging_event.get("delivery"):  # delivery confirmatio
