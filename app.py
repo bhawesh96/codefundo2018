@@ -62,8 +62,14 @@ def webhook():
                             msg = "Result after IMAGE ANALYSIS is \n " + textx
                             send_message(sender_id, msg)
                         if(attach_type == 'audio'):
+                            send_message(sender_id, 'received')
+                            print 'now fetching'
                             res = str(audio.fetch(attach_url))
                             send_message(sender_id, res)
+                            print 'now WIT'
+                            final_message = wit_parser(client.message(str(message_text)))
+                            print str(final_message)
+                            send_message(sender_id, str(final_message))
 
 
                 if messaging_event.get("delivery"):  # delivery confirmatio

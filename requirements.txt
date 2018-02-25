@@ -7,3 +7,5 @@ Jinja2==2.9.6
 requests==2.18.4
 Werkzeug==0.12.2
 wit==5.0.0
+SpeechRecognition==3.8.1
+cloudconvert==1.0.0
