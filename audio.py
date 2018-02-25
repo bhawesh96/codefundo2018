@@ -31,7 +31,7 @@ def fetch(audio_url):
         os.path.dirname(__file__),
         'my_audio.wav')
 
-    with sr.WavFile(file_name_wav) as source:              # use "test.wav" as the audio source
+    with sr.WavFile(file_name_wav) as source:              # use "testwav" as the audio source
         r.adjust_for_ambient_noise(source)  # here
         audio = r.record(source)                        # extract audio data from the file
 
