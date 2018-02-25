@@ -8,6 +8,7 @@ import hotels
 import translate
 from wit import Wit
 import time
+import vision
 
 
 app = Flask(__name__)
@@ -55,7 +56,10 @@ def webhook():
                         attach_url = messaging_event["message"]["attachments"][0]['payload']['url']
                         print str(attach_type)
                         print str(attach_url)
-                        send_message(sender_id, str(attach_type) + '' + str(attach_url))
+                        if(attach_type == 'image'):
+                            textx = str(vision.fetch(attach_url))
+                        msg = "Result after text analysis is " + textx
+                        send_message(sender_id, msg)
 
 
                 if messaging_event.get("delivery"):  # delivery confirmatio
