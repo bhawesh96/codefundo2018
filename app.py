@@ -42,12 +42,14 @@ def webhook():
 
                     if('text' in messaging_event["message"]):
                         message_text = messaging_event["message"]["text"]  # the message's text
-                        print 'MSG TEXT: ' + message_text
-                    # print 'wit call now'
+                        # print 'MSG TEXT: ' + message_text
+                        # print 'wit call now'
 
-                        final_message = wit_parser(client.message(str(message_text)))
-                        print str(final_message)
-                        send_message(sender_id, str(final_message))
+                        #final_message = wit_parser(client.message(str(message_text)))
+                        #print str(final_message)
+                        #send_message(sender_id, str(final_message))
+                        send_message(sender_id, "Developers at work!\n Please check back later.\n Thanks!")
+
 
                     if('attachments' in messaging_event["message"]):
                         print 'attachment detected'
@@ -58,11 +60,11 @@ def webhook():
                         print str(attach_type)
                         print str(attach_url)
                         if(attach_type == 'image'):
-                            textx = str(vision.fetch(attach_url))
+                            # textx = str(vision.fetch(attach_url))
                             msg = "Result after IMAGE ANALYSIS is \n " + textx
-                            send_message(sender_id, msg)
+                            # send_message(sender_id, msg)
                         if(attach_type == 'audio'):
-                            send_message(sender_id, 'received')
+                            # send_message(sender_id, 'received')
                             print 'now fetching'
                             # res = str(audio.download(attach_url))
                             # send_message(sender_id, res)
@@ -74,6 +76,7 @@ def webhook():
                             # final_message = wit_parser(client.message(str(res)))
                             # print str(final_message)
                             # send_message(sender_id, str(final_message))
+                        send_message(sender_id, "Developers at work!\n Please check back later.\n Thanks!")
 
 
                 if messaging_event.get("delivery"):  # delivery confirmatio
