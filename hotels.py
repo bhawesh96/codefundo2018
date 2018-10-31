@@ -3,7 +3,7 @@ import csv
 import json
 
 app_id="b2f41b4c"
-api_key="<app_key>"
+api_key="***REMOVED***"
 base_url= "http://developer.goibibo.com/api/voyager/get_hotels_by_cityid/?app_id=b2f41b4c&app_key=***REMOVED***&city_id="
 
 def getid(city):

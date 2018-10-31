@@ -5,7 +5,7 @@ import datetime
 import buses
 import translate
 
-base_url="http://developer.goibibo.com/api/search/?app_id=b2f41b4c&app_key=<app_key>&format=json&"
+base_url="http://developer.goibibo.com/api/search/?app_id=b2f41b4c&app_key=***REMOVED***&format=json&"
 
 client = Wit('***REMOVED***')
 

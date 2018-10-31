@@ -3,7 +3,7 @@ import json
 import datetime
 
 app_id="b2f41b4c"
-api_key="<app_key>"
+api_key="***REMOVED***"
 base_url="http://developer.goibibo.com/api/bus/search/?app_id=b2f41b4c&app_key=***REMOVED***&format=json&"
 
 def bus_between(src,dest,date):

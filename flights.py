@@ -3,8 +3,8 @@ import json
 import datetime
 
 app_id="b2f41b4c"
-api_key="<app_key>"
-base_url="http://developer.goibibo.com/api/search/?app_id=b2f41b4c&app_key=<app_key>&format=json&"
+api_key="***REMOVED***"
+base_url="http://developer.goibibo.com/api/search/?app_id=b2f41b4c&app_key=***REMOVED***&format=json&"
 
 def get_airport_code(city):
 	f=open("IATADatabase.py")
